@@ -1,0 +1,16 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+
+  "logging": {
+    "name" : "lean-motors",
+    "logDirectory": "logs",
+    "streams" : {
+        "type": "rotating-file",
+        "path": "server.log",
+        "period": "1d",
+        "count": 2
+    }
+  }
+}

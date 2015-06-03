@@ -1,0 +1,130 @@
+
+<div>
+	<h1>This is dashboard..</h1>
+    <p>{{testVar}}</p>
+    <div class="b-scrum-img">
+	  	<svg  id="svg"></svg>
+    </div>
+
+</div>
+ <script type="text/javascript">
+
+var s = Snap("#svg");
+var tSeconds = 700;
+var transform = { transform: 'matrix(1,0,0,1,0,-5)' };
+
+Snap.load("./svgs/sprint-process-plain.svg", function (f) {
+    var sprintSVG = f.select("g");
+    var pbl = sprintSVG.select("#sprint-retrospective");
+    s.append(sprintSVG);
+    //raysAnimation(pbl);
+    fadeInAnimation(pbl);
+
+});
+
+
+// Infinite animation for the sun rays
+function raysAnimation(e){
+    e.animate({ transform: 'r90'}, 10000,  function(){
+             e.attr({ transform: 'rotate(0)'});
+            raysAnimation(e); // Repeat this animation so it appears infinite.
+        }
+    );
+
+}
+
+// Infinite animation for the sun rays
+function fadeInAnimation(e){
+    e.attr({ opacity: '0'});
+    e.animate({opacity: "100"}, 10000);
+}
+
+/*;
+
+
+var PO = s.image("./svgs/person.svg",386,499, 46,64)
+
+            .drag();
+
+
+var SM = s.image("./svgs/person.svg",1376,499, 46,64)
+            .animate(transform,tSeconds, mina.easein)
+            .drag()
+var PBL = s.image("./svgs/product-backlogs.svg",374,630, 71,88)
+            .animate(transform,tSeconds, mina.easein)
+            .drag();
+var SBL = s.image("./svgs/sprint-backlogs.svg",540,630, 60,50)
+            .animate(transform,tSeconds, mina.easein)
+            .drag();
+var PI = s.image("./svgs/product-increment.svg",1240,645, 115,52)
+            .animate(transform,tSeconds, mina.easein)
+            .drag();
+var PR = s.image("./svgs/product-release.svg",1435,645, 115,52)
+            .animate(transform,tSeconds, mina.easein)
+            .drag();
+
+
+var _PR = select("g");*/
+
+/*Snap.load("./svgs/person.svg", function (f) {
+    var po = f.select("g"), poMatrix = new Snap.Matrix();
+    po.drag();
+	poMatrix.translate(234,-161);
+
+	var sm = Snap(po.node.cloneNode(true)), smMatrix = new Snap.Matrix();
+	sm.drag();
+	smMatrix.translate(1218,-161);
+
+	//po.animate({ transform: poMatrix },3000, mina.easein);
+	//sm.animate({ transform: smMatrix },3000, mina.easein);
+
+    po.attr('234,-155');
+    s.append(po);
+    s.append(sm);
+});
+
+
+Snap.load("./svgs/product-backlogs.svg", function (f) {
+    var productBacklog = f.select("g"), productBacklogMatrix = new Snap.Matrix();
+    productBacklog.drag();
+	productBacklogMatrix.translate(-75,-17);
+
+
+
+    s.append(productBacklog);
+});
+
+
+Snap.load("./svgs/product-increment.svg", function (f) {
+    var productIncrement = f.select("g"), productIncrementMatrix = new Snap.Matrix();
+    productIncrement.drag();
+	productIncrementMatrix.translate(1205,-15);
+
+
+	productIncrement.animate({ transform: productIncrementMatrix },3000, mina.easein);
+    s.append(productIncrement);
+});
+
+
+
+
+Snap.load("./svgs/sprint-backlogs.svg", function (f) {
+    var sprintBacklogs = f.select("g"), sprintBacklogsMatrix = new Snap.Matrix();
+    sprintBacklogs.drag();
+	sprintBacklogsMatrix.translate(300, 20);
+
+
+	sprintBacklogs.animate({ transform: sprintBacklogsMatrix },3000, mina.easein);
+    s.append(sprintBacklogs);
+});*/
+
+/*Snap.load("./svgs/product-release.svg", function (f) {
+
+    var PR = f.select("g").drag();
+
+
+    //PR.animate(transform,tSeconds, mina.easein)
+    s.append(PR);
+});*/
+
+</script>
