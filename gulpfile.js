@@ -4,6 +4,7 @@
 // =======================================================================
 var gulp            = require('gulp'),
     connect         = require('gulp-connect'),
+    exec            = require('gulp-exec'),
     jshint          = require('gulp-jshint'),
     stylish         = require('jshint-stylish'),
     concat          = require('gulp-concat'),
@@ -101,37 +102,48 @@ var express = require('express'),
     server  = express();
 
 
-// Server settings
-server.use(express.static(filePath.build.dest));
 
-server.all('/*', function(req, res) {
-    res.sendfile('/', { root: filePath.build.dest });
-});
-
-var api = require('./server/lib/api');
-api.initialize(server);
-//var server = require('./server/index.js');
+var server = require('./server/index.js');
 
 // uncomment the "middleware" section when you are ready to connect to an API
-gulp.task('server', function() {
-    //server.start();
-    connect.server({
-        root: filePath.build.dest,
-        fallback: filePath.build.dest + '/index.html',
-        port: 5000,
-        livereload: true
-        // ,
-        // middleware: function(connect, o) {
-        //     return [ (function() {
-        //         var url = require('url');
-        //         var proxy = require('proxy-middleware');
-        //         var options = url.parse('http://localhost:3000/'); // path to your dev API
-        //         options.route = '/api';
-        //         return proxy(options);
-        //     })() ];
-        // }
-    });
+gulp.task('server', function (cb) {
+  exec('node server/index.js', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    handleError(err);
+    cb(err);
+  });
 });
+
+// gulp.task('server', function() {
+//      server.start();
+//     // Server settings
+//     // server.use(express.static(filePath.build.dest));
+//     // 
+//     // server.all('/*', function(req, res) {
+//     //     res.sendfile('/', { root: filePath.build.dest });
+//     // });
+//     // 
+//     // var api = require('./server/lib/api');
+//     // api.initialize(server);
+// 
+//     // connect.server({
+//     //     root: filePath.build.dest,
+//     //     fallback: filePath.build.dest + '/index.html',
+//     //     port: 5000,
+//     //     livereload: true
+//     //     // ,
+//     //     // middleware: function(connect, o) {
+//     //     //     return [ (function() {
+//     //     //         var url = require('url');
+//     //     //         var proxy = require('proxy-middleware');
+//     //     //         var options = url.parse('http://localhost:3000/'); // path to your dev API
+//     //     //         options.route = '/api';
+//     //     //         return proxy(options);
+//     //     //     })() ];
+//     //     // }
+//     // });
+// });
 
 
 // =======================================================================

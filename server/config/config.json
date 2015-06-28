@@ -2,7 +2,10 @@
   "env": {
     "NODE_ENV": "development"
   },
-
+  "server": {
+        "host": "0.0.0.0",
+        "port": "8000"
+    },
   "logging": {
     "name" : "lean-motors",
     "logDirectory": "logs",
@@ -14,3 +17,4 @@
     }
   }
 }
+
